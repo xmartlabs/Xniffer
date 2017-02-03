@@ -14,7 +14,7 @@ By [Xmartlabs SRL](http://xmartlabs.com).
 
 Xniffer is a non-intrusive framework for intercepting outgoing requests and their responses between your app and any external service for debugging and performance monitoring purposes.
 
-<a href="https://github.com/serejahh/ResponseDetective"> Inspired by Response detective. </a>
+<a href="https://github.com/netguru/ResponseDetective"> Inspired by Response detective. </a>
 
 
 <img src="Example/fetch.gif" width="300"/>
