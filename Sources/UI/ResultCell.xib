@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="223" id="AjA-Kq-YOw" customClass="ResultCell" customModule="Xniffer">
+            <rect key="frame" x="0.0" y="0.0" width="421" height="223"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AjA-Kq-YOw" id="6kc-Mp-PSg">
+                <rect key="frame" x="0.0" y="0.0" width="421" height="222.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="FNN-No-yHb">
+                        <rect key="frame" x="10" y="8" width="401" height="206"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxl-wa-oQ5">
+                                <rect key="frame" x="0.0" y="0.0" width="401" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ti9-NV-Chs">
+                                <rect key="frame" x="0.0" y="96" width="401" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTY-5o-Wmf">
+                                <rect key="frame" x="0.0" y="191.5" width="401" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="FNN-No-yHb" secondAttribute="bottom" id="5HE-cX-gca"/>
+                    <constraint firstItem="FNN-No-yHb" firstAttribute="top" secondItem="6kc-Mp-PSg" secondAttribute="topMargin" id="5lx-FV-OLF"/>
+                    <constraint firstItem="FNN-No-yHb" firstAttribute="width" secondItem="6kc-Mp-PSg" secondAttribute="width" constant="-20" id="WDu-Cl-9Gv"/>
+                    <constraint firstItem="FNN-No-yHb" firstAttribute="centerX" secondItem="6kc-Mp-PSg" secondAttribute="centerX" id="cGb-Sw-Ub3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="curlLabel" destination="ti9-NV-Chs" id="Uf3-n7-o3s"/>
+                <outlet property="latencyLabel" destination="VTY-5o-Wmf" id="XX3-mj-mNS"/>
+                <outlet property="urlLabel" destination="hxl-wa-oQ5" id="C0X-yb-4mO"/>
+            </connections>
+            <point key="canvasLocation" x="116.5" y="-4.5"/>
+        </tableViewCell>
+    </objects>
+</document>

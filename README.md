@@ -1,7 +1,6 @@
 # Xniffer
 
 <p align="left">
-<a href="https://travis-ci.org/xmartlabs/Xniffer"><img src="https://travis-ci.org/xmartlabs/Xniffer.svg?branch=master" alt="Build status" /></a>
 <img src="https://img.shields.io/badge/platform-iOS-blue.svg?style=flat" alt="Platform iOS" />
 <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift3-compatible-4BC51D.svg?style=flat" alt="Swift 3 compatible" /></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" /></a>
@@ -13,17 +12,47 @@ By [Xmartlabs SRL](http://xmartlabs.com).
 
 ## Introduction
 
-Xniffer is a library to .......
+Xniffer is a non-intrusive framework for intercepting outgoing requests and their responses between your app and any external service for debugging and performance monitoring purposes.
 
-<!-- <img src="Example/Xniffer.gif" width="300"/> -->
+<a href="https://github.com/serejahh/ResponseDetective"> Inspired by Response detective. </a>
 
-## Usage
 
+<img src="Example/fetch.gif" width="300"/>
+<img src="Example/curl.gif" width="300"/>
+
+## Setup
+
+In order to work, the Xniffer needs to be added as a middleware between your URLSession and the Internet.
+After the initial setup, a window will be displayed on top of the UI that will show all the current requests and their latency.
+
+#### Basic usage
 ```swift
-import Xniffer
-..
-.
+
+let configuration = URLSessionConfiguration.default
+// The setup method adds the Xniffer's custom protocol as a middleware.
+Xniffer.setup(with: configuration)
+let session = URLSession(configuration: configuration)
 ```
+Now we can start using this session instance for our requests!
+
+#### Using Alamofire
+If you are using Alamofire you can start using the Xniffer by initializing your Manager with the following:
+```swift
+
+let configuration = URLSessionConfiguration.default
+configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
+Xniffer.setup(with: configuration)
+let sessionManager = SessionManager(configuration: configuration)
+let manager = NetworkManager(manager: sessionManager )
+```
+### UI Modes
+The Xniffer currently supports three modes, `.window`, `.console` and `.custom`. The default value is `.window` but this can be changed easily on the `Xniffer.setup(configuration: URLSessionConfiguration, method: XnifferUI = .window)`.
+ Each one of this uses a different implementation of the `XnifferDelegate`.
+
+  * `.window` : Displays a window on top of the status bar which can be expanded to display a list of the profiled requests. This is the default value.
+  * `.console` : Prints the results on the Xcode console.
+  * `.custom` : This one receives a closure of type `() -> ()` so you can use your own implementation of the `XnifferDelegate`.
+
 
 ## Requirements
 
@@ -43,9 +72,6 @@ If you use **Xniffer** in your app We would love to hear about it! Drop us a lin
 ## Examples
 
 Follow these 3 steps to run Example project: Clone Xniffer repository, open Xniffer workspace and run the *Example* project.
-
-You can also experiment and learn with the *Xniffer Playground* which is contained in *Xniffer.workspace*.
-
 ## Installation
 
 #### CocoaPods
@@ -71,12 +97,6 @@ github "xmartlabs/Xniffer" ~> 1.0
 ## Author
 
 * [Xmartlabs SRL](https://github.com/xmartlabs) ([@xmartlabs](https://twitter.com/xmartlabs))
-
-## FAQ
-
-#### How to .....
-
-You can do it by conforming to .....
 
 # Change Log
 
