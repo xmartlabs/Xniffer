@@ -96,7 +96,7 @@ github "xmartlabs/Xniffer" ~> 1.0
 
 ## Author
 
-* [Xmartlabs SRL](https://github.com/xmartlabs) ([@xmartlabs](https://twitter.com/xmartlabs))
+* [Mauricio Cousillas](https://github.com/mcousillas6)
 
 # Change Log
 
