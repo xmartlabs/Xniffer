@@ -28,7 +28,7 @@ import Foundation
 
 public extension XnifferResult {
 
-    func cURLRepresentation() -> String {
+    public func cURLRepresentation() -> String {
         var components = ["$ curl -i"]
         
         guard let url = request.url else {

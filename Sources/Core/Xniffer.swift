@@ -80,11 +80,11 @@ public protocol XnifferDelegate: class {
 
 public final class Xniffer {
 
-    weak var delegate: XnifferDelegate?
+    public var delegate: XnifferDelegate?
     private var requests = [RequestWrapper]()
     private static var profilerWindow: XnifferWindow?
 
-    static let shared = Xniffer()
+    public static let shared = Xniffer()
 
     private init () {}
 
