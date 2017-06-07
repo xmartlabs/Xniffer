@@ -124,11 +124,11 @@ class XnifferViewController: UIViewController {
         view.addConstraints(constraints)
     }
 
-    func dismissController() {
+    @objc func dismissController() {
         windowDelegate?.hideController()
     }
 
-    func clearHistoric() {
+    @objc func clearHistoric() {
         historic = []
         tableView.reloadData()
     }

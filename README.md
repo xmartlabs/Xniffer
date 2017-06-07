@@ -42,11 +42,10 @@ If you are using Alamofire you can start using the Xniffer by initializing your 
 let configuration = URLSessionConfiguration.default
 configuration.httpAdditionalHeaders = SessionManager.defaultHTTPHeaders
 Xniffer.setup(with: configuration)
-let sessionManager = SessionManager(configuration: configuration)
-let manager = NetworkManager(manager: sessionManager )
+let sessionManager = Alamofire.SessionManager(configuration: configuration)
 ```
 ### UI Modes
-The Xniffer currently supports three modes, `.window`, `.console` and `.custom`. The default value is `.window` but this can be changed easily on the `Xniffer.setup(configuration: URLSessionConfiguration, method: XnifferUI = .window)`.
+The Xniffer currently supports three modes, `.window`, `.console` and `.custom`. The default value is `.window` but this can be changed easily on the `Xniffer.setup(configuration: URLSessionConfiguration, mode: XnifferUI = .window)`.
  Each one of this uses a different implementation of the `XnifferDelegate`.
 
   * `.window` : Displays a window on top of the status bar which can be expanded to display a list of the profiled requests. This is the default value.

@@ -81,7 +81,7 @@ class XnifferWindow: UIWindow, XnifferControllerDelegate {
         xnifferController.setupXniffer()
     }
 
-    func displayResultController() {
+    @objc func displayResultController() {
         let frame = XnifferWindow.fullScreenFrame
         UIView.animate(
             withDuration: 0.3,
