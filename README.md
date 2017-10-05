@@ -56,7 +56,7 @@ The Xniffer currently supports three modes, `.window`, `.console` and `.custom`.
 ## Requirements
 
 * iOS 9.0+
-* Xcode 8.0+
+* Xcode 9.0+
 
 ## Getting involved
 
@@ -80,7 +80,7 @@ Follow these 3 steps to run Example project: Clone Xniffer repository, open Xnif
 To install Xniffer, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Xniffer', '~> 1.0'
+pod 'Xniffer', '~> 2.0'
 ```
 
 #### Carthage
@@ -90,7 +90,7 @@ pod 'Xniffer', '~> 1.0'
 To install Xniffer, simply add the following line to your Cartfile:
 
 ```ogdl
-github "xmartlabs/Xniffer" ~> 1.0
+github "xmartlabs/Xniffer" ~> 2.0
 ```
 
 ## Author

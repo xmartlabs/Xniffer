@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Xniffer"
-  s.version          = "1.1.0"
+  s.version          = "2.0.0"
   s.summary          = "A swift network profiler built on top URLSession."
   s.homepage         = "https://github.com/xmartlabs/Xniffer"
   s.license          = { type: 'MIT', file: 'LICENSE' }
