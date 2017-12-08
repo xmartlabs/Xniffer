@@ -55,8 +55,8 @@ class XnifferWindow: UIWindow, XnifferControllerDelegate {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
         button.backgroundColor = .black
         button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        button.setTitle("", for: .normal)
-        button.setTitleColor(.red, for: .normal)
+        button.setTitle("No requests yet", for: .normal)
+        button.setTitleColor(.green, for: .normal)
         button.addTarget(self, action: #selector(displayResultController), for: .touchUpInside)
         button.layer.cornerRadius = 10
         return button

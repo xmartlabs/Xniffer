@@ -77,7 +77,7 @@ class XnifferViewController: UIViewController {
         let labelWidth = 150
         let x = Int(UIScreen.main.bounds.width / 2) - labelWidth / 2
         let label = UILabel(frame: CGRect(x: x, y: 0, width: labelWidth, height: 44))
-        label.text = ""
+        label.text = "No requests yet"
         label.textColor = .white
         label.textAlignment = .center
         return label
@@ -108,7 +108,7 @@ class XnifferViewController: UIViewController {
     }
 
     func setupXniffer() {
-        Xniffer.shared.delegate = self
+        Xniffer.shared.observers.append(self)
     }
 
     private func setupTable() {
@@ -187,7 +187,7 @@ extension XnifferViewController: UITableViewDelegate {
 
 }
 
-extension XnifferViewController: XnifferDelegate {
+extension XnifferViewController: XnifferObserver {
 
     func displayResult(for result: XnifferResult) {
         historic.insert(result, at: 0)

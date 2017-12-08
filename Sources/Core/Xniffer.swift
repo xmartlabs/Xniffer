@@ -71,7 +71,7 @@ public enum XnifferUI {
 
 }
 
-public protocol XnifferDelegate: class {
+public protocol XnifferObserver: class {
 
     func displayResult(for result: XnifferResult)
     func queueUpdated(queueCount: Int)
@@ -80,7 +80,7 @@ public protocol XnifferDelegate: class {
 
 public final class Xniffer {
 
-    public var delegate: XnifferDelegate?
+    public var observers = [XnifferObserver]()
     private var requests = [RequestWrapper]()
     private static var profilerWindow: XnifferWindow?
 
@@ -88,16 +88,18 @@ public final class Xniffer {
 
     private init () {}
 
-    public static func setup(with configuration: URLSessionConfiguration, mode: XnifferUI = .window) {
+    public static func setup(with configuration: URLSessionConfiguration, modes: [XnifferUI] = [.window]) {
         Xniffer.enableInURLSessionConfiguration(configuration: configuration)
-        switch mode {
-        case .console:
-            Xniffer.shared.delegate = ConsoleXniffer()
-        case .window:
-            Xniffer.profilerWindow = XnifferWindow()
-            Xniffer.profilerWindow?.makeKeyAndVisible()
-        case .custom(let callback):
-            callback()
+        modes.forEach {
+            switch $0 {
+            case .console:
+                Xniffer.shared.observers.append(ConsoleXniffer())
+            case .window:
+                Xniffer.profilerWindow = XnifferWindow()
+                Xniffer.profilerWindow?.makeKeyAndVisible()
+            case .custom(let callback):
+                callback()
+            }
         }
     }
 
@@ -110,14 +112,16 @@ public final class Xniffer {
         let timeInterval = response.timestamp.uptimeNanoseconds - request.timestamp.uptimeNanoseconds
         let latency = Double(timeInterval) / 1_000_000
         DispatchQueue.main.async { [weak self] in
-            self?.delegate?.displayResult(for:
-                XnifferResult(request: request.request,
-                               response: response.response,
-                               error: nil,
-                               session: response.session,
-                               latency: latency
+            self?.observers.forEach{
+                $0.displayResult(for:
+                    XnifferResult(request: request.request,
+                                  response: response.response,
+                                  error: nil,
+                                  session: response.session,
+                                  latency: latency
+                    )
                 )
-            )
+            }
         }
     }
 
@@ -126,14 +130,16 @@ public final class Xniffer {
         let timeInterval = error.timestamp.uptimeNanoseconds - request.timestamp.uptimeNanoseconds
         let latency = Double(timeInterval) / 1_000_000
         DispatchQueue.main.sync { [weak self] in
-            self?.delegate?.displayResult(for:
-                XnifferResult(request: request.request,
-                               response: error.response,
-                               error: error.error,
-                               session: error.session,
-                               latency: latency
+            self?.observers.forEach{
+                $0.displayResult(for:
+                    XnifferResult(request: request.request,
+                                  response: error.response,
+                                  error: error.error,
+                                  session: error.session,
+                                  latency: latency
+                    )
                 )
-            )
+            }
         }
     }
 
@@ -144,7 +150,7 @@ public final class Xniffer {
     func enqueue(request: RequestWrapper) {
         requests.append(request)
         DispatchQueue.main.sync { [weak self] in
-            self?.delegate?.queueUpdated(queueCount: self?.requests.count ?? 0)
+            self?.observers.forEach{ $0.queueUpdated(queueCount: self?.requests.count ?? 0) }
         }
     }
 
@@ -153,7 +159,7 @@ public final class Xniffer {
         let request = requests[index]
         requests.remove(at: index)
         DispatchQueue.main.sync { [weak self] in
-            self?.delegate?.queueUpdated(queueCount: self?.requests.count ?? 0)
+            self?.observers.forEach{ $0.queueUpdated(queueCount: self?.requests.count ?? 0) }
         }
         return request
     }
