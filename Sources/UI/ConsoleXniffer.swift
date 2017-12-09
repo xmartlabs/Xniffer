@@ -26,7 +26,7 @@
 
 import Foundation
 
-class ConsoleXniffer: XnifferDelegate {
+class ConsoleXniffer: XnifferObserver {
 
     func displayResult(for result: XnifferResult) {
         print("======================================================================")

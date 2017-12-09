@@ -45,12 +45,13 @@ Xniffer.setup(with: configuration)
 let sessionManager = Alamofire.SessionManager(configuration: configuration)
 ```
 ### UI Modes
-The Xniffer currently supports three modes, `.window`, `.console` and `.custom`. The default value is `.window` but this can be changed easily on the `Xniffer.setup(configuration: URLSessionConfiguration, mode: XnifferUI = .window)`.
- Each one of this uses a different implementation of the `XnifferDelegate`.
+The Xniffer currently supports three modes which could be used at the same time, `.window`, `.console` and `.custom`. The default value is only`.window` but this can be changed easily on the `Xniffer.setup(configuration: URLSessionConfiguration, modes: [XnifferUI] = [.window])`.
+
+Each one of this uses a different implementation of the `XnifferObserver`.
 
   * `.window` : Displays a window on top of the status bar which can be expanded to display a list of the profiled requests. This is the default value.
   * `.console` : Prints the results on the Xcode console.
-  * `.custom` : This one receives a closure of type `() -> ()` so you can use your own implementation of the `XnifferDelegate`.
+  * `.custom` : This one receives a closure of type `() -> ()` so you can use your own implementation of the `XnifferObserver`.
 
 
 ## Requirements
@@ -80,7 +81,7 @@ Follow these 3 steps to run Example project: Clone Xniffer repository, open Xnif
 To install Xniffer, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Xniffer', '~> 2.0'
+pod 'Xniffer', '~> 3.0'
 ```
 
 #### Carthage
@@ -90,7 +91,7 @@ pod 'Xniffer', '~> 2.0'
 To install Xniffer, simply add the following line to your Cartfile:
 
 ```ogdl
-github "xmartlabs/Xniffer" ~> 2.0
+github "xmartlabs/Xniffer" ~> 3.0
 ```
 
 ## Author
